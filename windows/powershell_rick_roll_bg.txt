@@ -1,0 +1,67 @@
+REM Sets a Rick Ashley image as the desktop's background
+DELAY 2000
+WINDOWS r
+DELAY 200
+STRING powershell.exe
+DELAY 200
+ENTER
+DELAY 500
+STRING $url = "https://miro.medium.com/max/1032/1*D3KQrzaixORZTmkzNDs3Lg.png"
+DELAY 1000
+ENTER
+STRING Invoke-WebRequest $url -OutFile C:\Users\Public\rick_roll.png
+DELAY 300
+ENTER
+REM BEGIN WALLPAPER SET FUNCTION
+    STRING function Set-Wallpaper($MyWallpaper){
+    DELAY 300
+    ENTER
+    STRING $code = @'
+    DELAY 300
+    ENTER
+    STRING using System.Runtime.InteropServices;
+    DELAY 300
+    ENTER
+    STRING namespace Win32{
+    DELAY 300
+    ENTER
+    STRING public class Wallpaper{
+    DELAY 300
+    ENTER
+    STRING [DllImport("user32.dll", CharSet=CharSet.Auto)]
+    DELAY 300
+    ENTER
+    STRING static extern int SystemParametersInfo (int uAction , int uParam , string lpvParam , int fuWinIni);
+    DELAY 200
+    ENTER
+    STRING public static void SetWallpaper(string thePath){
+    DELAY 300
+    ENTER
+    STRING SystemParametersInfo(20,0,thePath,3);
+    DELAY 300
+    ENTER
+    STRING }
+    DELAY 300
+    ENTER
+    STRING }
+    DELAY 300
+    ENTER
+    STRING }
+    DELAY 300
+    ENTER
+    STRING '@
+    DELAY 300
+    ENTER
+    STRING add-type $code
+    DELAY 300
+    ENTER
+    STRING [Win32.Wallpaper]::SetWallpaper($MyWallpaper)
+    DELAY 300
+    ENTER
+    STRING }
+    DELAY 300
+    ENTER
+REM END WALLPAPER SET FUNCTION
+STRING Set-WallPaper("C:\Users\Public\rick_roll.png")
+DELAY 300
+ENTER
